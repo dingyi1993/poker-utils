@@ -1,0 +1,48 @@
+html, body, #root, .App {
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: grid;
+  grid-template-columns: 15vw 15vw 15vw 15vw 15vw 15vw;
+  grid-template-rows: 30vh 30vh 30vh;
+}
+.table {
+  grid-column-start: span 4;
+}
+.table > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+}
+.table .red {
+  color: red;
+}
+.table .green {
+  color: green;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+.player input {
+  width: 80%;
+}
+
+.dealer {
+  grid-column-start: span 4;
+}

@@ -1,0 +1,29 @@
+.Calculator {
+  display: grid;
+  grid-template-columns: 60px 60px 60px;
+  grid-template-rows: 60px 60px 60px 60px;
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+}
+.Calculator > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  font-size: 28px;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.calc-number {
+}
+
+.backspace svg {
+  width: 1em;
+  height: 1em;
+  font-size: 40px;
+}
+
+.negative-active {
+  background-color: #e02828 !important;
+}

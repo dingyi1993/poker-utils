@@ -13,7 +13,13 @@ const Avatar = () => {
 const gridOrder = [1, 2, 3, 14, 'table', 4, 13, 5, 12, 6, 11, 7, 10, 9, 8];
 
 function App() {
-  const [playerIncome, setPlayerIncome] = useState<string[]>(() => Array(14).fill('0'));
+  const [playerIncome, setPlayerIncome] = useState<string[]>(() => {
+    const localIncome = localStorage.getItem('pokerUtils');
+    if (!localIncome) {
+      return Array(14).fill('0');
+    }
+    return localIncome.split(',');
+  });
   const [activePlayer, setActivePlayer] = useState<number | null>(null);
 
   const handleCalcChange = useCallback((value: string) => {
@@ -26,11 +32,17 @@ function App() {
     setPlayerIncome((prev) => {
       const _prev = [...prev];
       _prev.splice(activePlayer - 1, 1, value);
+      localStorage.setItem('pokerUtils', _prev.join(','));
       return _prev;
     });
   }, [activePlayer]);
   const handlePlayerClick = (setNum: number) => {
     setActivePlayer(setNum);
+  };
+  const handleResetClick = () => {
+    const income = Array(14).fill('0');
+    setPlayerIncome(income);
+    localStorage.setItem('pokerUtils', income.join(','));
   };
 
   const renderItem = (key: number | string) => {
@@ -39,6 +51,7 @@ function App() {
       return (
         <div className="table">
           <div className="total">Total: <span className={total > 0 ? 'red' : total < 0 ? 'green' : undefined}>{total}</span></div>
+          <button type="button" style={{ fontSize: 20 }} onClick={handleResetClick}>reset</button>
           <Calculator value={activePlayer ? playerIncome[activePlayer - 1] : ''} onChange={handleCalcChange} />
         </div>
       );
